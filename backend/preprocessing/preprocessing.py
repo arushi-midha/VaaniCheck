@@ -62,6 +62,20 @@ import pandas as pd
 import re
 from sklearn.model_selection import train_test_split
 from datasets import load_dataset
+import os
+from dotenv import load_dotenv
+from huggingface_hub import login
+
+# Load the .env file
+load_dotenv()
+
+# Read token from environment variable
+token = os.getenv("HF_TOKEN")
+
+# Login to Hugging Face
+login(token=token)
+
+
 
 # Function to clean text (remove unwanted symbols, emojis, etc.)
 def clean_text(text):
@@ -79,9 +93,9 @@ hf_dataset = load_dataset("manueltonneau/india-hate-speech-superset")
 # Convert HF dataset to pandas DataFrame
 df_hindi = hf_dataset['train'].to_pandas()
 
-file_path = r"E:\Code\Python\Hate-Speech-Detection\backend\preprocessing\marathi.csv"
+#file_path = r"E:\Code\Python\Hate-Speech-Detection\backend\preprocessing\marathi.csv"
 
-df_marathi = pd.read_csv(file_path, header=0, encoding='utf-8')
+df_marathi = pd.read_csv('marathi.csv', header=0, encoding='utf-8')
 
 # Combine both datasets
 df_combined = pd.concat([df_marathi, df_hindi], ignore_index=True)
