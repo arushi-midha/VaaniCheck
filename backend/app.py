@@ -11,6 +11,8 @@ import tempfile
 import numpy as np
 from flask_cors import CORS
 
+
+
 app = Flask(__name__)
 
 # Enable CORS for all routes
@@ -22,7 +24,7 @@ CORS(app)
 # model = AutoModelForCTC.from_pretrained("theainerd/Wav2Vec2-large-xlsr-hindi")
 
 # Load the fine-tuned MuRIL model
-model_path = "training/muril_hate_speech_model"
+model_path = "Hate-speech-CNERG/indic-abusive-allInOne-MuRIL"
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
